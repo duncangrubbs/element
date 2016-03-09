@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
 
 <dom-module id="ele-ment">
 
   <style>
+    :host {
+      display: inline-block;
+    }
     .main {
       width: 100px;
       height: 100px;
-      background-color: grey;
-      margin: 10px 10px 10px 10px;
+      background-color: var(--paper-blue-500);
+      color: white;
+      margin: 4px 4px 4px 4px;
+      border-radius: 4%;
+      font-size: 1em;
+      font-family: 'Roboto';
+      padding-left: 4px;
     }
 
-    ul {
-      list-style: none;
+    div {
+      padding-bottom: 1px;
     }
 
-    li {
-      margin-left: 0;
+    #symbol {
+      font-size: 2em;
     }
 
   </style>
 
   <template>
     <div class="main">
-    <ul>
-      <li>{{atomicNumber}}</li>
-      <li>{{atomicSymbol}}</li>
-      <li>{{name}}</li>
-      <li>{{atomicMass}}</li>
-    </ul>
+      <div>{{atomicNumber}}</div>
+      <div id="symbol">{{atomicSymbol}}</div>
+      <div>{{name}}</div>
+      <div>{{atomicMass}}</div>
     </div>
 
 
@@ -39,10 +47,26 @@
     Polymer({
       is: 'ele-ment', //Is always the name of the element
       properties: {
-        name: String,
-        atomicSymbol: String,
-        atomicMass: Number,
+        data: {
+          type: Object,
+        },
+        name: {
+          type: String,
+        },
+        atomicSymbol: {
+          type: String,
+        },
+        atomicMass: {
+          type: Number,
+        },
+        classification: {
+          type: String,
+        },
         atomicNumber: Number,
+      },
+
+      ready: function(){
+        console.log(this.data);
       }
     });
   </script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../ele-ment.html">
+<link rel="import" href="../bower_components/dom-repeat-n/dom-repeat-n.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
+
+<dom-module id="periodic-table">
+
+  <style>
+
+  </style>
+
+  <template>
+    <template is="dom-repeat-n" count="118" start="1">
+      <ele-ment atomic-number="{{index}}" data="{{jsonData}}"></ele-ment>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'periodic-table', //Is always the name of the element
+
+      ready: function(){
+        function loadJSON(path, success, error) {
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                if (success) {
+                  success(JSON.parse(xhr.responseText));
+                }
+              } else {
+                if (error) {
+                  error(xhr);
+                }
+              }
+            }
+          };
+          xhr.open('GET', path, true);
+          xhr.send();
+        }
+        var jsonData;
+        loadJSON('data.json', function(data){this.jsonData = data;}, function(error){console.log(error);})
+        console.log(this.data);
+      }
+
+    });
+  </script>
+
+</dom-module>

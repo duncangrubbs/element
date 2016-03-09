@@ -16,6 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer#^1.3.1"
+    "polymer": "Polymer#^1.3.1",
+    "paper-styles": "polymerElements/paper-styles#~1.1.4",
+    "dom-repeat-n": "~1.0.2",
+    "paper-elements": "~1.0.7"
   }
 }
