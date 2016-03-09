@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="ele-ment">
+
+  <style>
+    .main {
+      width: 100px;
+      height: 100px;
+      background-color: grey;
+      margin: 10px 10px 10px 10px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      margin-left: 0;
+    }
+
+  </style>
+
+  <template>
+    <div class="main">
+    <ul>
+      <li>{{atomicNumber}}</li>
+      <li>{{atomicSymbol}}</li>
+      <li>{{name}}</li>
+      <li>{{atomicMass}}</li>
+    </ul>
+    </div>
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'ele-ment', //Is always the name of the element
+      properties: {
+        name: String,
+        atomicSymbol: String,
+        atomicMass: Number,
+        atomicNumber: Number,
+      }
+    });
+  </script>
+
+</dom-module>
