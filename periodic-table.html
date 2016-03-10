@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../ele-ment.html">
+<link rel="import" href="../periodic-element.html">
 <link rel="import" href="../bower_components/dom-repeat-n/dom-repeat-n.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="../bower_components/paper-styles/color.html">
@@ -14,7 +14,7 @@
 
   <template>
     <template is="dom-repeat-n" count="118" start="1">
-      <ele-ment atomic-number="{{index}}" data="{{jsonData}}"></ele-ment>
+      <periodic-element atomic-number="{{index}}" data="{{jsonData}}"></periodic-element>
     </template>
   </template>
 
