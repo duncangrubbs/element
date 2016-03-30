@@ -13,53 +13,13 @@
 
   <template>
     <template is="dom-repeat-n" count="118" start="1">
-      <periodic-element atomic-number="{{index}}" data="{{jsonData}}"></periodic-element>
+      <periodic-element number="{{index}}" data="{{jsonData}}"></periodic-element>
     </template>
   </template>
 
   <script>
     Polymer({
       is: 'periodic-table', //Is always the name of the element
-
-      ready: function(){
-        function loadJSON(path, success, error) {
-          var xhr = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-              if (xhr.status === 200) {
-                if (success) {
-                  success(JSON.parse(xhr.responseText));
-                }
-              } else {
-                if (error) {
-                  error(xhr);
-                }
-              }
-            }
-          };
-          xhr.open('GET', path, true);
-          xhr.send();
-        }
-        var jsonData;
-        loadJSON('data.json', function(data){this.jsonData = data;}, function(error){console.log(error);})
-        console.log(this.data);
-      }
-
-      var table = elemets[0];
-
-      populateRow: function(){
-        for(i = 0; i < 12; i++){
-          index = i;
-          index.atomicSymbol = SOMETHING WITH JSON;
-        }
-      }
-
-      populate: function(){
-        for each(row : table){
-          populateRow();
-        }
-      }
-
     });
   </script>
 

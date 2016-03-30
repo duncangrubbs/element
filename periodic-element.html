@@ -60,12 +60,49 @@
         classification: {
           type: String,
         },
-        atomicNumber: Number,
+        atomicNumber: {
+          type: Number,
+          value: 7,
+        },
       },
 
       ready: function(){
-        console.log(this.data);
+        function loadJSON(path, success, error) {
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                if (success) {
+                  success(JSON.parse(xhr.responseText));
+                }
+              } else {
+                if (error) {
+                  error(xhr);
+                }
+              }
+            }
+          };
+          xhr.open('GET', path, true);
+          xhr.send();
+        }
+
+
+        loadJSON('data.json', function(data){
+          var jsonData;
+          jsonData = data;
+
+          console.log(this.number);
+          var atom = jsonData.PERIODIC_TABLE.ATOM[1];
+          console.log(atom);
+          this.atomicMass = atom.ATOMIC_WEIGHT;
+          this.atomicSymbol = 'Au';
+          this.name = atom.NAME;
+
+
+        }, function(error){console.log(error);})
+
       }
+
     });
   </script>
 
