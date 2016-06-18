@@ -12,6 +12,7 @@
     }
 
     .main {
+      display: flex;
       width: 72px;
       height: 104px;
       background-color: var(--paper-blue-500);
@@ -19,7 +20,6 @@
       margin: 4px 4px 4px 4px;
       font-size: 1em;
       font-family: 'Roboto';
-      padding-left: 4px;
     }
 
     div {
@@ -66,38 +66,8 @@
       },
 
       ready: function(){
-        function loadJSON(path, success, error) {
-          var xhr = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-              if (xhr.status === 200) {
-                if (success) {
-                  success(JSON.parse(xhr.responseText));
-                }
-              } else {
-                if (error) {
-                  error(xhr);
-                }
-              }
-            }
-          };
-          xhr.open('GET', path, true);
-          xhr.send();
-        }
-
-        loadJSON('data.json', function(data){
-          var jsonData;
-          jsonData = data;
-          var atom;
-          for (var i = 0; i < jsonData.PERIODIC_TABLE.ATOM.length; i++) {
-            atom = jsonData.PERIODIC_TABLE.ATOM[i];
-            this.atomicMass = atom.ATOMIC_WEIGHT;
-          }
-
-        }, function(error){console.log(error);})
-
+        console.log(data);
       }
-
     });
   </script>
 
