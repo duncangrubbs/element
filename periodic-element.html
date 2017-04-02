@@ -46,27 +46,27 @@
       properties: {
         data: {
           type: Object,
+          observer: 'dataUpdate'
         },
         name: {
           type: String,
         },
         atomicSymbol: {
-          type: String,
+          type: String
         },
         atomicMass: {
-          type: Number,
+          type: Number
         },
         classification: {
-          type: String,
+          type: String
         },
         atomicNumber: {
-          type: Number,
-          value: 7,
+          type: Number
         },
       },
 
-      ready: function(){
-        console.log(data);
+      ready: function() {
+        console.log(this.data);
       }
     });
   </script>

@@ -12,37 +12,30 @@
   </style>
 
   <template>
-    <template is="dom-repeat-n" count="118" start="1">
-      <periodic-element number="{{index}}" data="{{jsonData}}"></periodic-element>
-    </template>
+    <iron-ajax url="data.json" last-response="{{data}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
+    <!-- <iron-list id="list" items="{{data.table.atoms}}" as="item">
+        <template>
+          [[item]]
+        </template>
+        <periodic-element id="element" data="{{item}}"></periodic-element>
+    </iron-list> -->
+
+    <periodic-element id="element" data="hello"></periodic-element>
+
   </template>
 
   <script>
     Polymer({
-      is: 'periodic-table', //Is always the name of the element
-      ready: function(){
-        function loadJSON(path, success, error) {
-          var xhr = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-              if (xhr.status === 200) {
-                if (success) {
-                  success(JSON.parse(xhr.responseText));
-                }
-              } else {
-                if (error) {
-                  error(xhr);
-                }
-              }
-            }
-          };
-          xhr.open('GET', path, true);
-          xhr.send();
+      is: 'periodic-table',
+      properties: {
+        data: {
+          type: Object,
+          observer: '_dataUpdate'
         }
-        loadJSON('data.json', function(data){
-          list = data.PERIODIC_TABLE.ATOM;
-          jsonData = list;
-        }, function(error){console.log(error);});
+      },
+
+      _dataUpdate: function() {
+        console.log('update');
       }
     });
   </script>
