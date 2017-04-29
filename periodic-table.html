@@ -9,18 +9,24 @@
 <dom-module id="periodic-table">
 
   <style>
+    :host {
+      width: 100vw;
+      min-height: 90vh;
+    }
+
+    .element {
+      width: 50px;
+      height: 50px;
+      margin: 8px;
+      background: grey;
+    }
   </style>
 
   <template>
-    <iron-ajax url="data.json" last-response="{{data}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
-    <!-- <iron-list id="list" items="{{data.table.atoms}}" as="item">
-        <template>
-          [[item]]
-        </template>
-        <periodic-element id="element" data="{{item}}"></periodic-element>
-    </iron-list> -->
 
-    <periodic-element id="element" data="hello"></periodic-element>
+    <template is="dom-repeat" items="{{data}}">
+       <periodic-element atomic-number="[[item.ATOMIC_NUMBER]]" atomic-symbol="[[item.SYMBOL]]" atomic-mass="[[item.ATOMIC_WEIGHT]]" name="[[item.NAME]]"></periodic-element>
+    </template>
 
   </template>
 
@@ -29,13 +35,33 @@
       is: 'periodic-table',
       properties: {
         data: {
-          type: Object,
-          observer: '_dataUpdate'
+          type: Array
         }
       },
 
-      _dataUpdate: function() {
-        console.log('update');
+      ready: function() {
+        fetch('old.json')
+          .then(resp => {
+            data = resp.json()
+            .then(data => {
+              function compare(a,b) {
+                if (a.ATOMIC_NUMBER < b.ATOMIC_NUMBER)
+                  return -1;
+                if (a.ATOMIC_NUMBER > b.ATOMIC_NUMBER)
+                  return 1;
+                return 0;
+              }
+              this.data = data.PERIODIC_TABLE.ATOM.sort(compare);
+            })
+          });
+      },
+
+      compare: function() {
+         if (a.ATOMIC_NUMBER < b.ATOMIC_NUMBER)
+            return -1;
+          if (a.lATOMIC_NUMBER > b.ATOMIC_NUMBER)
+            return 1;
+          return 0;
       }
     });
   </script>
