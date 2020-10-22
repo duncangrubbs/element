@@ -1,6 +1,8 @@
 # 🧪 element
 > A lightweight chemical element React component
 
+![](demo.jpg)
+
 ## 📊 Parameters
 There is only one required parameter, because the component fetches all of the other required data.
 - `symbol`::String
