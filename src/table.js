@@ -1,4 +1,4 @@
-{
+const table = {
    "PERIODIC_TABLE":{
       "ATOM":[
          {
@@ -4805,4 +4805,6 @@
          }
       ]
    }
-}
+};
+
+export default table;
